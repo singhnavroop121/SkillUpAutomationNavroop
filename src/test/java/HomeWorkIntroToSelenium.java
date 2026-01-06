@@ -20,6 +20,7 @@ public void loginWithInvalidEmail() throws InterruptedException {
     String url = "http://testkoel.skillup.study/#home/";
     driver.get(url);
 
+    
     //enter invalid email address
     WebElement emailField= driver.findElement(By.xpath("//input[@type='email']"));
     emailField.click();
