@@ -3,8 +3,6 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import java.util.UUID;
-
-
 public class ChangeProfileName extends BaseTest {
     @Test
     public void changeProfileNameTest() throws InterruptedException {

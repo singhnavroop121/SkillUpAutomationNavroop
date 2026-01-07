@@ -51,8 +51,7 @@ public class BaseTest {
         Thread.sleep(2000);
 
     }
-
-
+    
     public void provideEmail() throws InterruptedException {
         WebElement emailField= driver.findElement(By.xpath("//input[@type='email']"));
         emailField.click();
