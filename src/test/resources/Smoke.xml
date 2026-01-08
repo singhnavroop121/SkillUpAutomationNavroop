@@ -1,0 +1,14 @@
+<suite name="Smoke">
+
+    <test name="Smoke Test" preserve-order="false">
+        <classes>
+
+            <class name="BaseTest"/>
+            <class name="HomeWorkIntroToSelenium">
+                <methods>
+                    <include name="loginWithvalidEmail"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
