@@ -37,11 +37,19 @@ public class AddSong extends BaseTest {
             SelectPlayList();
             Thread.sleep(1000);
 
+            successMsg();
+            Thread.sleep(1000);
+
         }
 
         //helper methods
+
+    public void successMsg() {
+        WebElement successMsgPopup = driver.findElement(By.xpath("//div[@class='popover']"));
+        Assert.assertTrue(successMsgPopup.isDisplayed());
+    }
     private void SelectPlayList() {
-        WebElement playlist= driver.findElement(By.xpath("/html/body/div[1]/main/div[1]/section/section[12]/header/main/div[2]/div[2]/div/div[1]/section/ul/li[3]"));
+        WebElement playlist= driver.findElement(By.xpath("/html/body/div[1]/main/div[1]/section/section[12]/header/main/div[2]/div[2]/div/div[1]/section/ul/li[4]"));
         playlist.click();
 
     }
