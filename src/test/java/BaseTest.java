@@ -44,20 +44,20 @@ public class BaseTest {
 
     }
 
-    public void providePassword() throws InterruptedException {
+    public void providePassword(String password) throws InterruptedException {
         WebElement passwordField= driver.findElement(By.xpath("//input[@type='password']"));
         passwordField.click();
         passwordField.clear();
-        passwordField.sendKeys("Intern$hip001");
+        passwordField.sendKeys(password);
         Thread.sleep(2000);
 
     }
-    public void provideEmail() throws InterruptedException {
+    public void provideEmail(String email) throws InterruptedException {
         WebElement emailField= driver.findElement(By.xpath("//input[@type='email']"));
         emailField.click();
         emailField.clear();
         Thread.sleep(2000);
-        emailField.sendKeys("student@skillup.study");
+        emailField.sendKeys(email);
         Thread.sleep(2000);
     }
 
