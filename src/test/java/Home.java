@@ -3,9 +3,8 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class AddSong extends BaseTest {
-
-
+public class Home extends BaseTest {
+ //test-1
         @Test
         public void AddSongToPlaylistTest() throws InterruptedException {
 
@@ -13,8 +12,8 @@ public class AddSong extends BaseTest {
             navigateToKoelApp();
 
             //login with valid credentials
-            provideEmail();
-            providePassword();
+            provideEmail("student@skillup.study");
+            providePassword("Intern$hip001");
             clickLoginBtn();
 
             //search song
@@ -70,11 +69,40 @@ public class AddSong extends BaseTest {
     }
 
     private void searchsongfield() {
-        WebElement searchfield= driver.findElement(By.xpath("//input[@name='q']"));
+        WebElement searchfield = driver.findElement(By.xpath("//input[@name='q']"));
         searchfield.click();
         searchfield.clear();
         searchfield.sendKeys("Epic Song");
-
-
     }
+
+//test-2
+ @Test
+        public void play() throws InterruptedException {
+
+            //navidate to koel app
+            navigateToKoelApp();
+            //login with valid credentials
+            provideEmail("student@skillup.study");
+            providePassword("Intern$hip001");
+            clickLoginBtn();
+
+            //click on play button
+            clickOnplayButton();
+            //assert result
+            turnPlayBtn();
+
+        }
+
+        private void turnPlayBtn() {
+            WebElement changeIcon= driver.findElement(By.xpath("//*[@id='app']/main/footer/div[3]/div[2]/div/button[3]/svg"));
+            Assert.assertTrue(changeIcon.isDisplayed());
+        }
+
+        private void clickOnplayButton() {
+            WebElement playBtn = driver.findElement(By.xpath("//button[@data-title='Play or resume']"));
+            playBtn.click();
+        }
+
+
 }
+
