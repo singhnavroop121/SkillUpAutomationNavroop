@@ -3,7 +3,18 @@
     <test name="Smoke Test" preserve-order="false">
         <classes>
 
-            <class name="BaseTest"/>
+
+            <class name="AddSong">
+                <methods>
+                    <include name="AddSongToPlaylistTest"></include>
+                </methods>
+
+            </class>
+            <class name="PlaySong">
+                <methods>
+                    <include name="play"></include>
+                </methods>
+            </class>
             <class name="HomeWorkIntroToSelenium">
                 <methods>
                     <include name="loginWithvalidEmail"/>
