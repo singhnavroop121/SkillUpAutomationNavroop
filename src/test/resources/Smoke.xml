@@ -5,7 +5,7 @@
 
 
 
-            <class name="HomeWorkIntroToSelenium">
+            <class name="LoginTest">
                 <methods>
                     <include name="loginWithvalidEmail"/>
                 </methods>
