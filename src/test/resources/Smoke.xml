@@ -3,8 +3,6 @@
     <test name="Smoke Test" preserve-order="false">
         <classes>
 
-
-
             <class name="LoginTest">
                 <methods>
                     <include name="loginWithvalidEmail"/>

@@ -8,8 +8,6 @@ public class LoginTest extends BaseTest {
 @Test
 public void loginWithvalidEmail() throws InterruptedException {
 
-    //Navigate to koel App
-    navigateToKoelApp();
     //enter valid email address
     provideEmail("student@skillup.study");
     //enter valid password
@@ -18,21 +16,19 @@ public void loginWithvalidEmail() throws InterruptedException {
     clickLoginBtn();
 
     //helper methods
-    WebElement logoutBtn=driver.findElement(By.xpath("//img[@alt='Avatar of c25d9296833a4a9f87c2ea07b1d917eb']"));
+    WebElement logoutBtn=driver.findElement(By.xpath("//button[@data-title='Log out']"));
     Assert.assertTrue(logoutBtn.isDisplayed());
     Thread.sleep(2000);
 
 }
 //test2
-@Test
-public void loginWithInvalidEmail() throws InterruptedException {
+@Test(dataProvider = "NegativeLoginTestData",dataProviderClass = TestNGDataProvider.class)
+public void neagativeLoginTests(String email,String password) throws InterruptedException {
 
-    //Navigate to koel App
-    navigateToKoelApp();
     //enter valid email address
-    provideEmail("test@skillup.study");
+    provideEmail(email);
     //enter valid password
-    providePassword("Intern$hip001");
+    providePassword(password);
     //click submit button
     clickLoginBtn();
     //helper methods
@@ -41,52 +37,13 @@ public void loginWithInvalidEmail() throws InterruptedException {
     Thread.sleep(2000);
 
 
-    }
-
-    //test-3
-    @Test
-    public void loginWithInvalidPassword() throws InterruptedException {
-
-        //Navigate to koel App
-        navigateToKoelApp();
-        //enter valid email address
-        provideEmail("student@skillup.study");
-        //enter valid password
-        providePassword("Intern$hip");
-        //click submit button
-        clickLoginBtn();
-        //helper methods
-        WebElement forgetpasswordBtn=driver.findElement(By.xpath("//a[@role='button']"));
-        Assert.assertTrue(forgetpasswordBtn.isDisplayed());
-        Thread.sleep(2000);
-
-    }
-
-       //test-4
-@Test
-    public void loginWithEmptyField() throws InterruptedException {
-
-    //Navigate to koel App
-    navigateToKoelApp();
-    //enter valid email address
-    provideEmail("");
-    //enter valid password
-    providePassword("");
-    //click submit button
-    clickLoginBtn();
-    //helper methods
-    WebElement forgetpasswordBtn=driver.findElement(By.xpath("//a[@role='button']"));
-    Assert.assertTrue(forgetpasswordBtn.isDisplayed());
-    Thread.sleep(2000);
 
 }
 
-//test-5 logout varification
+//test-3 logout varification
 @Test
     public void logoutVarification() throws InterruptedException {
 
-    //Navigate to koel App
-    navigateToKoelApp();
     //enter valid email address
     provideEmail("student@skillup.study");
     //enter valid password

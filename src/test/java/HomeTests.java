@@ -6,12 +6,12 @@ import org.testng.annotations.Test;
 import java.util.UUID;
 
 public class HomeTests extends BaseTest {
- //test-1
+ //test-1 add song to test playlist
         @Test
         public void AddSongToPlaylistTest() throws InterruptedException {
 
             //navigate to koel app
-            navigateToKoelApp();
+            //navigateToKoelApp();
 
             //login with valid credentials
             provideEmail("student@skillup.study");
@@ -77,11 +77,11 @@ public class HomeTests extends BaseTest {
         searchfield.sendKeys("Epic Song");
     }
 
-//test-2
+//test-2 play song
  @Test
  public void play() throws InterruptedException {
        //navigate to koel app
-       navigateToKoelApp();
+      // navigateToKoelApp();
        //login with valid credentials
        provideEmail("student@skillup.study");
        providePassword("Intern$hip001");
@@ -108,13 +108,13 @@ public class HomeTests extends BaseTest {
 
 
 
-//test-3
+//test-3 update profile name
 
 
     @Test
     public void changeProfileNameTest() throws InterruptedException {
         //navigate to koel app
-        navigateToKoelApp();
+       // navigateToKoelApp();
 
         //login with valid credentials
         provideEmail("student@skillup.study");
