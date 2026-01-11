@@ -7,53 +7,57 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Parameters;
 
 import java.time.Duration;
 
 public class BaseTest {
     public WebDriver driver;
+
     @BeforeSuite
     static void setupClass() {
-        
+
         WebDriverManager.chromedriver().setup();
     }
 
     @BeforeMethod
-    public void launchBrowser(){
+    @Parameters({"baseURL"})
+    public void launchBrowser(String baseURL) {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         options.addArguments("--disable-notifications");
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
+        driver.get(baseURL);
     }
 
 
-
     @AfterMethod
-    public void closeBrowser(){
+    public void closeBrowser() {
         driver.quit();
     }
 
 
     //Helper methods
     public void clickLoginBtn() throws InterruptedException {
-        WebElement loginbtn=driver.findElement(By.xpath("//button[@type='submit']"));
+        WebElement loginbtn = driver.findElement(By.xpath("//button[@type='submit']"));
         loginbtn.click();
         Thread.sleep(2000);
 
     }
 
     public void providePassword(String password) throws InterruptedException {
-        WebElement passwordField= driver.findElement(By.xpath("//input[@type='password']"));
+        WebElement passwordField = driver.findElement(By.xpath("//input[@type='password']"));
         passwordField.click();
         passwordField.clear();
         passwordField.sendKeys(password);
         Thread.sleep(2000);
 
     }
+
     public void provideEmail(String email) throws InterruptedException {
-        WebElement emailField= driver.findElement(By.xpath("//input[@type='email']"));
+        WebElement emailField = driver.findElement(By.xpath("//input[@type='email']"));
         emailField.click();
         emailField.clear();
         Thread.sleep(2000);
@@ -61,11 +65,11 @@ public class BaseTest {
         Thread.sleep(2000);
     }
 
-    public void navigateToKoelApp() {
+   /* public void navigateToKoelApp() {
         String url = "http://testkoel.skillup.study/#home/";
-        driver.get(url);
+        driver.get(url);*/
 
-    }
+
 }
 
 
