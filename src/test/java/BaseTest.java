@@ -4,16 +4,21 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Parameters;
 
 import java.time.Duration;
+import java.util.List;
+import java.util.Set;
 
 public class BaseTest {
     public WebDriver driver;
-
+    public WebDriverWait wait;
     @BeforeSuite
     static void setupClass() {
 
@@ -29,6 +34,7 @@ public class BaseTest {
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
+        wait = new WebDriverWait(driver,Duration.ofSeconds(5));
         driver.get(baseURL);
     }
 
@@ -41,28 +47,29 @@ public class BaseTest {
 
     //Helper methods
     public void clickLoginBtn() throws InterruptedException {
-        WebElement loginbtn = driver.findElement(By.xpath("//button[@type='submit']"));
+        WebElement loginbtn= wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@type='password']")));
+        //WebElement loginbtn = driver.findElement(By.xpath("//button[@type='submit']"));
         loginbtn.click();
-        Thread.sleep(2000);
+
 
     }
 
     public void providePassword(String password) throws InterruptedException {
-        WebElement passwordField = driver.findElement(By.xpath("//input[@type='password']"));
+      WebElement passwordField= wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='password']")));
+        // WebElement passwordField = driver.findElement(By.xpath("//input[@type='password']"));
         passwordField.click();
         passwordField.clear();
         passwordField.sendKeys(password);
-        Thread.sleep(2000);
+
 
     }
 
     public void provideEmail(String email) throws InterruptedException {
-        WebElement emailField = driver.findElement(By.xpath("//input[@type='email']"));
+        WebElement emailField=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='email']")));
         emailField.click();
         emailField.clear();
-        Thread.sleep(2000);
         emailField.sendKeys(email);
-        Thread.sleep(2000);
+
     }
 
    /* public void navigateToKoelApp() {
