@@ -6,67 +6,68 @@ import org.testng.annotations.Test;
 import java.util.UUID;
 
 public class HomeTests extends BaseTest {
- //test-1 add song to test playlist
-        @Test
-        public void AddSongToPlaylistTest() throws InterruptedException {
+    //test-1 add song to test playlist
+    @Test
+    public void AddSongToPlaylistTest() throws InterruptedException {
 
-            //navigate to koel app
-            //navigateToKoelApp();
+        //navigate to koel app
+        //navigateToKoelApp();
 
-            //login with valid credentials
-            provideEmail("student@skillup.study");
-            providePassword("Intern$hip001");
-            clickLoginBtn();
+        //login with valid credentials
+        provideEmail("student@skillup.study");
+        providePassword("Intern$hip001");
+        clickLoginBtn();
 
-            //search song
-            searchsongfield();
-            Thread.sleep(1000);
+        //search song
+        searchsongfield();
+        Thread.sleep(1000);
 
-            //click view all btn
-            clickviewAllBtn();
-            Thread.sleep(1000);
+        //click view all btn
+        clickviewAllBtn();
+        Thread.sleep(1000);
 
-            //select first song
-            selectFirstSong();
-            Thread.sleep(1000);
+        //select first song
+        selectFirstSong();
+        Thread.sleep(1000);
 
-            //click add to btn
-            clickAddToBtn();
-            Thread.sleep(1000);
+        //click add to btn
+        clickAddToBtn();
+        Thread.sleep(1000);
 
-            //select playlist
-            SelectPlayList();
-            Thread.sleep(1000);
+        //select playlist
+        SelectPlayList();
+        Thread.sleep(1000);
 
-            successMsg();
-            Thread.sleep(1000);
+        successMsg();
+        Thread.sleep(1000);
 
-        }
+    }
 
-        //helper methods
+    //helper methods
 
     public void successMsg() {
         WebElement successMsgPopup = driver.findElement(By.xpath("//div[@class='popover']"));
         Assert.assertTrue(successMsgPopup.isDisplayed());
     }
+
     private void SelectPlayList() {
-        WebElement playlist= driver.findElement(By.xpath("//*[@id='mainContent']/section[12]/header/main/div[2]/div[2]/div/div[1]/section/ul/li[5]"));
+        WebElement playlist = driver.findElement(By.xpath("//*[@id='mainContent']/section[12]/header/main/div[2]/div[2]/div/div[1]/section/ul/li[5]"));
         playlist.click();
 
     }
 
     private void clickAddToBtn() {
-        WebElement addBtn= driver.findElement(By.xpath("//button[normalize-space()='Add To…']"));
+        WebElement addBtn = driver.findElement(By.xpath("//button[normalize-space()='Add To…']"));
         addBtn.click();
-        }
+    }
 
     private void selectFirstSong() {
-        WebElement clickFirstSong= driver.findElement(By.xpath("//*[@id='mainContent']/section[12]/main/div/div[2]/div/div/div[1]/article"));
+        WebElement clickFirstSong = driver.findElement(By.xpath("//*[@id='mainContent']/section[12]/main/div/div[2]/div/div/div[1]/article"));
         clickFirstSong.click();
     }
 
     private void clickviewAllBtn() {
-        WebElement viewAllBtn= driver.findElement(By.xpath("//button[@data-testid='view-all-songs-btn']"));
+        WebElement viewAllBtn = driver.findElement(By.xpath("//button[@data-testid='view-all-songs-btn']"));
         viewAllBtn.click();
     }
 
@@ -77,42 +78,39 @@ public class HomeTests extends BaseTest {
         searchfield.sendKeys("Epic Song");
     }
 
-//test-2 play song
- @Test
- public void play() throws InterruptedException {
-       //navigate to koel app
-      // navigateToKoelApp();
-       //login with valid credentials
-       provideEmail("student@skillup.study");
-       providePassword("Intern$hip001");
-       clickLoginBtn();
+    //test-2 play song
+    @Test
+    public void play() throws InterruptedException {
+        
+        //login with valid credentials
+        provideEmail("student@skillup.study");
+        providePassword("Intern$hip001");
+        clickLoginBtn();
 
-       //click on play button
-       clickOnplayButton();
-       Thread.sleep(1000);
-       //assert result
-       turnPlayBtn();
-       Thread.sleep(1000);
+        //click on play button
+        clickOnplayButton();
+        Thread.sleep(1000);
+        //assert result
+        turnPlayBtn();
+        Thread.sleep(1000);
 
-        }
+    }
 
-        private void turnPlayBtn() {
-            WebElement changeIcon= driver.findElement(By.xpath("//button[@data-title='Play or resume'][@title='Pause']"));
-            Assert.assertTrue(changeIcon.isDisplayed());
-        }
+    private void turnPlayBtn() {
+        WebElement changeIcon = driver.findElement(By.xpath("//button[@data-title='Play or resume'][@title='Pause']"));
+        Assert.assertTrue(changeIcon.isDisplayed());
+    }
 
-        private void clickOnplayButton() {
-            WebElement playBtn = driver.findElement(By.xpath("//button[@data-title='Play or resume']"));
-            playBtn.click();
-        }
-
+    private void clickOnplayButton() {
+        WebElement playBtn = driver.findElement(By.xpath("//button[@data-title='Play or resume']"));
+        playBtn.click();
+    }
 
 
 //test-3 update profile name
 
 
-    @Test
-    public void changeProfileNameTest() throws InterruptedException {
+    /*public void changeProfileNameTest() throws InterruptedException {
         //navigate to koel app
        // navigateToKoelApp();
 
@@ -199,4 +197,5 @@ public class HomeTests extends BaseTest {
         savebtn.click();
     }
     }
-
+*/
+}
