@@ -47,7 +47,7 @@ public class BaseTest {
 
     //Helper methods
     public void clickLoginBtn() throws InterruptedException {
-        WebElement loginbtn= wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@type='password']")));
+        WebElement loginbtn= wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@type='submit']")));
         //WebElement loginbtn = driver.findElement(By.xpath("//button[@type='submit']"));
         loginbtn.click();
 

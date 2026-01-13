@@ -1,5 +1,6 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -15,26 +16,23 @@ public class ProfilePageTests extends BaseTest {
         provideEmail("student@skillup.study");
         providePassword("Intern$hip001");
         clickLoginBtn();
-        Thread.sleep(2000);
 
         //click profile icon
         clickProfileIconBtn();
-        Thread.sleep(2000);
 
         //enter current password
         provideCurrentPassword(currentPassword);
-        Thread.sleep(2000);
+
         provideNewPassword(newPassword);
-        Thread.sleep(2000);
+
         //entre profile name
         provideProfileName(newName);
-        Thread.sleep(2000);
+
         //enter email
         provideProfileEmail(profileEmail);
-        Thread.sleep(2000);
+
         //click on save button
         clickSave();
-        Thread.sleep(2000);
 
         //varify result
         successnotification();
@@ -43,32 +41,37 @@ public class ProfilePageTests extends BaseTest {
     }
 
     private void successnotification() {
-        WebElement updatenotification = driver.findElement(By.xpath("//div[@class='popover']"));
+       // WebElement updatenotification = driver.findElement(By.xpath("//div[@class='popover']"));
+        WebElement updatenotification = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='popover']")));
         Assert.assertTrue(updatenotification.isDisplayed());
     }
 
     //helper methods
     public void clickSave() {
-        WebElement savebtn= driver.findElement(By.xpath("//footer[@class='mt-8']//button[@type='submit']"));
+   WebElement savebtn= wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//footer[@class='mt-8']//button[@type='submit']")));
+        //WebElement savebtn= driver.findElement(By.xpath("//footer[@class='mt-8']//button[@type='submit']"));
         savebtn.click();
     }
 
 
     public void provideCurrentPassword(String currentPassword) {
-        WebElement currentPasswordField = driver.findElement(By.xpath("//input[@data-testid='currentPassword']"));
+        //WebElement currentPasswordField = driver.findElement(By.xpath("//input[@data-testid='currentPassword']"));
+       WebElement currentPasswordField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@data-testid='currentPassword']")));
         currentPasswordField.click();
         currentPasswordField.clear();
         currentPasswordField.sendKeys(currentPassword);
     }
 
     public void provideNewPassword(String newPassword) {
-        WebElement newPasswordField = driver.findElement(By.xpath("//input[@data-testid='newPassword']"));
+       // WebElement newPasswordField = driver.findElement(By.xpath("//input[@data-testid='newPassword']"));
+       WebElement newPasswordField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@data-testid='newPassword']")));
         newPasswordField.click();
         newPasswordField.clear();
         newPasswordField.sendKeys(newPassword);
     }
     public void provideProfileName(String newName) {
-        WebElement profileNameField = driver.findElement(By.xpath("//input[@data-testid='name']"));
+       // WebElement profileNameField = driver.findElement(By.xpath("//input[@data-testid='name']"));
+        WebElement profileNameField= wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@data-testid='name']")));
         profileNameField.click();
         profileNameField.clear();
         profileNameField.sendKeys(newName);
@@ -76,19 +79,16 @@ public class ProfilePageTests extends BaseTest {
     }
 
     public void provideProfileEmail(String profileEmail) {
-        WebElement profileEmailField = driver.findElement(By.xpath("//input[@data-testid='email']"));
+       // WebElement profileEmailField = driver.findElement(By.xpath("//input[@data-testid='email']"));
+        WebElement profileEmailField =wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@data-testid='email']")));
         profileEmailField.click();
         profileEmailField.clear();
         profileEmailField.sendKeys(profileEmail);
     }
 
-   // public String generateRandomName() {
-       // return UUID.randomUUID().toString().replace("-", "");
-
-
-
     public void clickProfileIconBtn() {
-        WebElement savebtn = driver.findElement(By.xpath("//a[@data-title='Profile and preferences']"));
+        //WebElement savebtn = driver.findElement(By.xpath("//a[@data-title='Profile and preferences']"));
+        WebElement savebtn =wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@data-title='Profile and preferences']")));
         savebtn.click();
     }
 }
