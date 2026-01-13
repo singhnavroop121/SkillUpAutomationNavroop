@@ -1,5 +1,6 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -16,9 +17,11 @@ public void loginWithvalidEmail() throws InterruptedException {
     clickLoginBtn();
 
     //helper methods
-    WebElement logoutBtn=driver.findElement(By.xpath("//button[@data-title='Log out']"));
+
+    WebElement logoutBtn=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@data-title='Log out']")));
+    //WebElement logoutBtn=driver.findElement(By.xpath("//button[@data-title='Log out']"));
     Assert.assertTrue(logoutBtn.isDisplayed());
-    Thread.sleep(2000);
+
 
 }
 //test2
@@ -32,11 +35,10 @@ public void neagativeLoginTests(String email,String password) throws Interrupted
     //click submit button
     clickLoginBtn();
     //helper methods
-    WebElement forgetpasswordBtn=driver.findElement(By.xpath("//a[@role='button']"));
+
+    WebElement forgetpasswordBtn=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@role='button']")));
+    //WebElement forgetpasswordBtn=driver.findElement(By.xpath("//a[@role='button']"));
     Assert.assertTrue(forgetpasswordBtn.isDisplayed());
-    Thread.sleep(2000);
-
-
 
 }
 
