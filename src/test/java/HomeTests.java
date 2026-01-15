@@ -53,20 +53,20 @@ public class HomeTests extends BaseTest {
 
     private void SelectPlayList() {
 
-       WebElement playlist = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='mainContent']/section[3]/header/main/div[2]/div/div[2]/div/div[1]/section/ul/li[4]")));
+        WebElement playlist = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='mainContent']/section[3]/header/main/div[2]/div/div[2]/div/div[1]/section/ul/li[4]")));
         playlist.click();
 
     }
 
     private void clickAddToBtn() {
 
-       WebElement addBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='Add To…']")));
+        WebElement addBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='Add To…']")));
         addBtn.click();
     }
 
     private void selectFirstSong() {
 
-       WebElement clickFirstSong = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='mainContent']/section[12]/main/div/div[2]/div/div/div[1]/article")));
+        WebElement clickFirstSong = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='mainContent']/section[12]/main/div/div[2]/div/div/div[1]/article")));
         clickFirstSong.click();
     }
 
@@ -78,7 +78,7 @@ public class HomeTests extends BaseTest {
 
     private void searchsongfield() {
 
-       WebElement searchfield = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@name='q']")));
+        WebElement searchfield = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@name='q']")));
 
         searchfield.click();
         searchfield.clear();
@@ -96,23 +96,79 @@ public class HomeTests extends BaseTest {
 
         //click on play button
         clickOnplayButton();
-        Thread.sleep(1000);
+
         //assert result
         turnPlayBtn();
-        Thread.sleep(1000);
+
 
     }
 
     private void turnPlayBtn() {
 
-       WebElement changeIcon = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@data-title='Play or resume'][@title='Pause']")));
+        WebElement changeIcon = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@data-title='Play or resume'][@title='Pause']")));
         Assert.assertTrue(changeIcon.isDisplayed());
     }
 
     private void clickOnplayButton() {
 
-       WebElement playBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@data-title='Play or resume']")));
+        WebElement playBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@data-title='Play or resume']")));
         playBtn.click();
     }
 
+
+    @Test
+    public void hoverAddToOption() throws InterruptedException {
+        //login with valid credentials
+        provideEmail("student@skillup.study");
+        providePassword("Intern$hip001");
+        clickLoginBtn();
+
+        //click on all songs
+        clickAllSongsBtn();
+        //right click on first song from the list
+        contextClickOnFirstSong();
+        //hover to add to option
+        hoverOnAddToOptipon();
+        //select test option
+        ClickOnTestOption();
+        //success message
+        successMsgPopover();
+
+
+    }
+     public void successMsgPopover() {
+        WebElement successMsgPopup = wait.until(ExpectedConditions.visibilityOfElementLocated
+            (By.xpath("//div[@class='popover']")));
+  Assert.assertTrue(successMsgPopup.isDisplayed());
+   }
+
+    private void ClickOnTestOption() {
+        WebElement selectTestOption = wait.until(ExpectedConditions.visibilityOfElementLocated
+                (By.xpath("//template[@class='block']")));
+        actions.click(selectTestOption).perform();
+    }
+
+    private void hoverOnAddToOptipon() {
+        WebElement hoverOnAddTo = wait.until(ExpectedConditions.visibilityOfElementLocated
+                (By.xpath("//li[@class='has-sub']")));
+
+        actions.moveToElement(hoverOnAddTo).perform();
+
+    }
+
+    private void contextClickOnFirstSong() {
+        WebElement contextClick = wait.until(ExpectedConditions.visibilityOfElementLocated
+                (By.xpath("//*[@id='mainContent']/section[3]/main/div/div[2]/div/div/div[1]/article")));
+
+        actions.contextClick(contextClick).perform();
+    }
+
+    private void clickAllSongsBtn() {
+        WebElement allSongBtn = wait.until(ExpectedConditions.visibilityOfElementLocated
+                (By.xpath("//a[@href='/#/songs']")));
+
+        actions.click(allSongBtn).perform();
+    }
 }
+
+
