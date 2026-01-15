@@ -169,6 +169,31 @@ public class HomeTests extends BaseTest {
 
         actions.click(allSongBtn).perform();
     }
+
+    
+    @Test
+    public void doubleClickPlaySong() throws InterruptedException {
+
+        //login
+        provideEmail("student@skillup.study");
+        providePassword("Intern$hip001");
+        clickLoginBtn();
+
+        //select allSongs
+        clickAllSongsBtn();
+        //play song with double click
+        doubleClickToPlay();
+        //assert result
+        turnPlayBtn();
+
+    }
+
+    private void doubleClickToPlay() {
+        WebElement doubleClickOnSong =wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='mainContent']/section[3]/main/div/div[2]/div/div/div[1]/article")));
+    actions.doubleClick(doubleClickOnSong).perform();
+
+    }
+
 }
 
 
