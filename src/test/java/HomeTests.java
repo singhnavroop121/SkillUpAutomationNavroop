@@ -136,11 +136,12 @@ public class HomeTests extends BaseTest {
 
 
     }
-     public void successMsgPopover() {
+
+    public void successMsgPopover() {
         WebElement successMsgPopup = wait.until(ExpectedConditions.visibilityOfElementLocated
-            (By.xpath("//div[@class='popover']")));
-  Assert.assertTrue(successMsgPopup.isDisplayed());
-   }
+                (By.xpath("//div[@class='popover']")));
+        Assert.assertTrue(successMsgPopup.isDisplayed());
+    }
 
     private void ClickOnTestOption() {
         WebElement selectTestOption = wait.until(ExpectedConditions.visibilityOfElementLocated
@@ -170,7 +171,7 @@ public class HomeTests extends BaseTest {
         actions.click(allSongBtn).perform();
     }
 
-    
+
     @Test
     public void doubleClickPlaySong() throws InterruptedException {
 
@@ -189,11 +190,84 @@ public class HomeTests extends BaseTest {
     }
 
     private void doubleClickToPlay() {
-        WebElement doubleClickOnSong =wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='mainContent']/section[3]/main/div/div[2]/div/div/div[1]/article")));
-    actions.doubleClick(doubleClickOnSong).perform();
+        WebElement doubleClickOnSong = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='mainContent']/section[3]/main/div/div[2]/div/div/div[1]/article")));
+        actions.doubleClick(doubleClickOnSong).perform();
 
     }
 
+
+    @Test
+    public void createAndDeletePlaylist() throws InterruptedException {
+        //login
+        provideEmail("student@skillup.study");
+        providePassword("Intern$hip001");
+        clickLoginBtn();
+
+        //click on plus button
+      clickPlusBtn();
+
+        //click on new playlist
+        selectPlaylist();
+        //enter new playlist name
+        provideNewPlaylistName();
+        //click on save button
+        clickSaveBtn();
+        //delete playlist by entering name
+        selectNewPlaylistByName("NewSongsPlaylist");
+        //click On delete to delete the playlist
+        deletePlaylist();
+        //assertion
+        confirmationMsg();
+    }
+
+    private void confirmationMsg() {
+        WebElement SuccessMsg=wait.until(ExpectedConditions.visibilityOfElementLocated
+                (By.xpath("//div[@class='popover']")));
+
+
+        Assert.assertTrue(SuccessMsg.isDisplayed());
+
+    }
+
+    private void deletePlaylist() {
+        WebElement clickOnDelete=wait.until(ExpectedConditions.visibilityOfElementLocated
+                (By.xpath("//li[normalize-space()='Delete']")));
+    }
+
+    private void selectNewPlaylistByName(String Playlist) {
+        WebElement contextClickOnPlaylist=wait.until(ExpectedConditions.visibilityOfElementLocated
+                (By.xpath("//span[normalize-space()='"+Playlist+"']")));
+        actions.contextClick(contextClickOnPlaylist).perform();
+    }
+
+
+    private void clickSaveBtn() {
+        WebElement clickOnSaveBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//footer//button[@type='submit']")));
+        actions.click(clickOnSaveBtn).perform();
+
+
+    }
+
+    private void provideNewPlaylistName() {
+        WebElement enterPlaylistName = wait.until(ExpectedConditions.visibilityOfElementLocated
+                (By.xpath("//input[@placeholder='Playlist name']")));
+        actions.click(enterPlaylistName).perform();
+        actions.sendKeys("NewSongsPlaylist");
+
+    }
+
+    private void selectPlaylist() {
+        WebElement clickOnPlaylist = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath
+                ("//li[@data-testid='playlist-context-menu-create-smart']")));
+        actions.click(clickOnPlaylist).perform();
+
+    }
+
+    private void clickPlusBtn() {
+        WebElement clickOnPlusBtn = wait.until(ExpectedConditions.visibilityOfElementLocated
+                (By.xpath("//button[@title='Create a new playlist or folder']")));
+        actions.click(clickOnPlusBtn).perform();
+    }
+
+
 }
-
-
