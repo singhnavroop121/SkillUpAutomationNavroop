@@ -18,9 +18,9 @@ import java.util.List;
 import java.util.Set;
 
 public class BaseTest {
-    public WebDriver driver;
-    public WebDriverWait wait;
-    Actions actions;
+    public static WebDriver driver = null;
+    public static WebDriverWait wait = null;
+    public static Actions actions = null;
     @BeforeSuite
     static void setupClass() {
 

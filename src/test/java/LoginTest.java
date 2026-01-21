@@ -3,61 +3,56 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.HomePage;
+import pages.LoginPage;
 
 public class LoginTest extends BaseTest {
-//test-1
+
+    //test-1
 @Test
 public void loginWithvalidEmail() throws InterruptedException {
 
+    //page objects
+    LoginPage loginpage = new LoginPage(driver);
+    HomePage homepage = new HomePage(driver);
+
     //enter valid email address
-    provideEmail("student@skillup.study");
+   loginpage.provideEmail("student@skillup.study");
     //enter valid password
-    providePassword("Intern$hip001");
+    loginpage.providePassword("Intern$hip001");
     //click submit button
-    clickLoginBtn();
+    loginpage.clickLoginBtn();
 
-    //helper methods
-
-    WebElement logoutBtn=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@data-title='Log out']")));
-    //WebElement logoutBtn=driver.findElement(By.xpath("//button[@data-title='Log out']"));
-    Assert.assertTrue(logoutBtn.isDisplayed());
+    Assert.assertTrue(homepage.getlogoutBtn().isDisplayed());
 
 
 }
 //test2
 @Test(dataProvider = "NegativeLoginTestData",dataProviderClass = TestNGDataProvider.class)
-public void neagativeLoginTests(String email,String password) throws InterruptedException {
+public void negativeLoginTests(String email,String password) throws InterruptedException {
 
+    LoginPage loginpage = new LoginPage(driver);
     //enter valid email address
-    provideEmail(email);
+    loginpage.provideEmail(email);
     //enter valid password
-    providePassword(password);
+    loginpage.providePassword(password);
     //click submit button
-    clickLoginBtn();
-    //helper methods
+    loginpage.clickLoginBtn();
 
-    WebElement forgetpasswordBtn=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@role='button']")));
-    //WebElement forgetpasswordBtn=driver.findElement(By.xpath("//a[@role='button']"));
-    Assert.assertTrue(forgetpasswordBtn.isDisplayed());
+
+    //assertion
+    Assert.assertTrue(loginpage.getforgetPasswordBtn().isDisplayed());
 
 }
 
 //test-3 logout varification
 @Test
     public void logoutVarification() throws InterruptedException {
+    LoginPage loginpage = new LoginPage(driver);
+    HomePage homepage = new HomePage(driver);
 
-    //enter valid email address
-    provideEmail("student@skillup.study");
-    //enter valid password
-    providePassword("Intern$hip001");
-    //click submit button
-    clickLoginBtn();
-
-    //helper methods
-    //varify logo image at login page
-   WebElement logo= driver.findElement(By.xpath("//img[@class='inline-block']"));
-   Assert.assertTrue(logo.isDisplayed());
-
+    loginpage.loginToAppWithvalidEmail();
+    Assert.assertTrue(homepage.getlogoImage().isDisplayed());
 
     }
 
