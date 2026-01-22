@@ -11,6 +11,7 @@ public class HomePage extends BasePage {
     public HomePage(WebDriver givenDriver){
         super(givenDriver);
     }
+
     //elements
     By logoutBtn = By.xpath("//button[@data-title='Log out']");
     By logoImage = By.xpath("//img[@class='inline-block']");
