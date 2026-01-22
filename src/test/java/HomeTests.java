@@ -36,6 +36,7 @@ public class HomeTests extends BaseTest {
         //assertion
 
         Assert.assertTrue(homepage.getsuccessMsg().isDisplayed());
+        
     }
 
 
