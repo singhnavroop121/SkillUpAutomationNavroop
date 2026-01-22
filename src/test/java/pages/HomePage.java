@@ -29,8 +29,15 @@ public class HomePage extends BasePage {
     By rightClick =By.xpath("//*[@id='mainContent']/section[3]/main/div/div[2]/div/div/div[1]/article");
     By hoverOnAddTo =By.xpath("//li[@class='has-sub']");
     By selectTestOption=By.xpath("//template[@class='block']");
-   // By successMsgPopup=By.xpath("//div[@class='popover']");
-
+   //test4
+    By  doubleClickOnSong = By.xpath("//*[@id='mainContent']/section[3]/main/div/div[2]/div/div/div[1]/article");
+//test5
+    By clickOnPlusBtn  = By.xpath("//button[@title='Create a new playlist or folder']");
+    By clickOnPlaylist = By.xpath("//li[@data-testid='playlist-context-menu-create-smart']");
+    By enterPlaylistName = By.xpath("//input[@placeholder='Playlist name']");
+    By  clickSaveBtn = By.xpath("//footer//button[@type='submit']");
+    By clickOnDelete = By.xpath("//li[normalize-space()='Delete']");
+    By SuccessMsg = By.xpath("//div[@class='popover']");
     //test loginPage
     public WebElement getlogoutBtn() {
      return findElement((logoutBtn));
@@ -76,17 +83,47 @@ public class HomePage extends BasePage {
 
     public void contextClickOnFirstSong() {
 
-        actions.contextClick(rightClick).perform();
+        WebElement rightClickFirstSong = driver.findElement(rightClick);
+        actions.contextClick(rightClickFirstSong).perform();
     }
     public void hoverOnAddToOptipon(){
-        actions.moveToElement(()hoverOnAddTo).perform();
+        WebElement hover = driver.findElement(hoverOnAddTo);
+        actions.moveToElement(hover).perform();
     }
 
     public void ClickOnTestOption(){
         findElement(selectTestOption).click();
     }
 
-    public void successMsgPopover(){
-        findElement(successMsgPopup).click();
+//test4
+public void doubleClickToPlay(){
+    WebElement rightClickToPlay = driver.findElement(doubleClickOnSong);
+    actions.doubleClick(rightClickToPlay).perform();
+}
+    //test5
+
+    public void clickPlusBtn(){
+        findElement(clickOnPlusBtn).click();
     }
+    public void selectPlaylist(){
+        findElement(clickOnPlaylist).click();
+    }
+    public void provideNewPlaylistName() {
+        findElement(enterPlaylistName).click();
+        findElement(enterPlaylistName).sendKeys("NewSongsPlaylist");
+    }
+        public void clickSaveBtn(){
+            findElement(clickSaveBtn).click();
+        }
+
+    public void deletePlaylist(){
+        findElement(clickOnDelete).click();
+    }
+    public WebElement getconfirmationMsg() {
+        return findElement(SuccessMsg);
+    }
+
+
+
+
 }

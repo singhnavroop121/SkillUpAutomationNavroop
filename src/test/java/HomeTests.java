@@ -15,7 +15,7 @@ public class HomeTests extends BaseTest {
 
         LoginPage loginpage = new LoginPage(driver);
         HomePage homepage = new HomePage(driver);
-       //login with valid credentials
+        //login with valid credentials
         loginpage.loginToAppWithvalidEmail();
 
         //search song
@@ -33,12 +33,10 @@ public class HomeTests extends BaseTest {
         //select playlist
         homepage.SelectPlayList();
 
-    //assertion
+        //assertion
 
         Assert.assertTrue(homepage.getsuccessMsg().isDisplayed());
     }
-
-
 
 
     //test-2 play song
@@ -59,7 +57,7 @@ public class HomeTests extends BaseTest {
     }
 
 
-//test3
+    //test3
     @Test
     public void hoverAddToOption() throws InterruptedException {
         LoginPage loginpage = new LoginPage(driver);
@@ -75,145 +73,66 @@ public class HomeTests extends BaseTest {
         homepage.hoverOnAddToOptipon();
         //select test option
         homepage.ClickOnTestOption();
-        //success message
-        homepage.successMsgPopover();
+        //Assertion
+        Assert.assertTrue(homepage.getsuccessMsg().isDisplayed());
 
 
     }
 
-    /*public void successMsgPopover() {
-        WebElement successMsgPopup = wait.until(ExpectedConditions.visibilityOfElementLocated
-                (By.xpath("//div[@class='popover']")));
-        Assert.assertTrue(successMsgPopup.isDisplayed());
-    }*/
 
-    /*private void ClickOnTestOption() {
-        WebElement selectTestOption = wait.until(ExpectedConditions.visibilityOfElementLocated
-                (By.xpath("//template[@class='block']")));
-        actions.click(selectTestOption).perform();
-    }
-*/
-   /* private void hoverOnAddToOptipon() {
-        WebElement hoverOnAddTo = wait.until(ExpectedConditions.visibilityOfElementLocated
-                (By.xpath("//li[@class='has-sub']")));
-
-        actions.moveToElement(hoverOnAddTo).perform();*/
-
-    }
-
-   /* private void contextClickOnFirstSong() {
-        WebElement contextClick = wait.until(ExpectedConditions.visibilityOfElementLocated
-                (By.xpath("//*[@id='mainContent']/section[3]/main/div/div[2]/div/div/div[1]/article")));
-
-        actions.contextClick(contextClick).perform();*/
-
-  /*  private void clickAllSongsBtn() {
-        WebElement allSongBtn = wait.until(ExpectedConditions.visibilityOfElementLocated
-                (By.xpath("//a[@href='/#/songs']")));
-
-        actions.click(allSongBtn).perform();
-    }
-*/
-
-  /*  @Test
+    //test4
+    @Test
     public void doubleClickPlaySong() throws InterruptedException {
 
-        //login
-       // provideEmail("student@skillup.study");
-       // providePassword("Intern$hip001");
-        //clickLoginBtn();
+        LoginPage loginpage = new LoginPage(driver);
+        HomePage homepage = new HomePage(driver);
+        //login with valid credentials
+        loginpage.loginToAppWithvalidEmail();
 
-        //select allSongs
-        //clickAllSongsBtn();
+        //click on all songs
+        homepage.clickAllSongsBtn();
         //play song with double click
-        doubleClickToPlay();
+        homepage.doubleClickToPlay();
         //assert result
-        //turnPlayBtn();
-
-    }
-
-    private void doubleClickToPlay() {
-        WebElement doubleClickOnSong = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='mainContent']/section[3]/main/div/div[2]/div/div/div[1]/article")));
-        actions.doubleClick(doubleClickOnSong).perform();
+        Assert.assertTrue(homepage.getturnPlayBtn().isDisplayed());
 
     }
 
 
+
+//test5
     @Test
     public void createAndDeletePlaylist() throws InterruptedException {
         LoginPage loginpage = new LoginPage(driver);
         HomePage homepage = new HomePage(driver);
-
-        //login
+        //login with valid credentials
         loginpage.loginToAppWithvalidEmail();
-
         //click on plus button
-      clickPlusBtn();
+       homepage.clickPlusBtn();
 
         //click on new playlist
-        selectPlaylist();
+        homepage.selectPlaylist();
         //enter new playlist name
-        provideNewPlaylistName();
+        homepage.provideNewPlaylistName();
         //click on save button
-        clickSaveBtn();
+        homepage.clickSaveBtn();
         //delete playlist by entering name
         selectNewPlaylistByName("NewSongsPlaylist");
         //click On delete to delete the playlist
-        deletePlaylist();
+        homepage.deletePlaylist();
         //assertion
-        confirmationMsg();
-    }
-
-    private void confirmationMsg() {
-        WebElement SuccessMsg=wait.until(ExpectedConditions.visibilityOfElementLocated
-                (By.xpath("//div[@class='popover']")));
-
-
-        Assert.assertTrue(SuccessMsg.isDisplayed());
-
-    }
-
-    private void deletePlaylist() {
-        WebElement clickOnDelete=wait.until(ExpectedConditions.visibilityOfElementLocated
-                (By.xpath("//li[normalize-space()='Delete']")));
+        Assert.assertTrue(homepage.getconfirmationMsg().isDisplayed());
     }
 
     private void selectNewPlaylistByName(String Playlist) {
-        WebElement contextClickOnPlaylist=wait.until(ExpectedConditions.visibilityOfElementLocated
-                (By.xpath("//span[normalize-space()='"+Playlist+"']")));
+        WebElement contextClickOnPlaylist = wait.until(ExpectedConditions.visibilityOfElementLocated
+                (By.xpath("//span[normalize-space()='" + Playlist + "']")));
         actions.contextClick(contextClickOnPlaylist).perform();
     }
 
 
-    private void clickSaveBtn() {
-        WebElement clickOnSaveBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//footer//button[@type='submit']")));
-        actions.click(clickOnSaveBtn).perform();
-
 
     }
-
-    private void provideNewPlaylistName() {
-        WebElement enterPlaylistName = wait.until(ExpectedConditions.visibilityOfElementLocated
-                (By.xpath("//input[@placeholder='Playlist name']")));
-        actions.click(enterPlaylistName).perform();
-        actions.sendKeys("NewSongsPlaylist");
-
-    }
-
-    private void selectPlaylist() {
-        WebElement clickOnPlaylist = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath
-                ("//li[@data-testid='playlist-context-menu-create-smart']")));
-        actions.click(clickOnPlaylist).perform();
-
-    }
-
-    private void clickPlusBtn() {
-        WebElement clickOnPlusBtn = wait.until(ExpectedConditions.visibilityOfElementLocated
-                (By.xpath("//button[@title='Create a new playlist or folder']")));
-        actions.click(clickOnPlusBtn).perform();
-    }
-*/
-
 
 
 
