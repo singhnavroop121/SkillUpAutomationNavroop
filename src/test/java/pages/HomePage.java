@@ -3,6 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
 //class
@@ -13,32 +14,68 @@ public class HomePage extends BasePage {
     }
 
     //elements
-    By logoutBtn = By.xpath("//button[@data-title='Log out']");
-    By logoImage = By.xpath("//img[@class='inline-block']");
+    @FindBy(xpath="//button[@data-title='Log out']")
+    WebElement logoutBtn;
+    @FindBy(xpath="//img[@class='inline-block']")
+    WebElement logoImage;
+
    //test1 homeTest
-    By searchField = By.xpath("//input[@name='q']");
-    By viewAllBtn = By.xpath("//button[@data-testid='view-all-songs-btn']");
-    By clickFirstSongBtn = By.xpath("//*[@id='mainContent']/section[12]/main/div/div[2]/div/div/div[1]/article");
-    By addBtn = By.xpath("//button[normalize-space()='Add To…']");
-    By playlist =By.xpath("//*[@id='mainContent']/section[3]/header/main/div[2]/div/div[2]/div/div[1]/section/ul/li[4]");
-    By successMsgPopup=By.xpath("//div[@class='popover']");
+    //elements
+    @FindBy(xpath="//input[@name='q']")
+    WebElement searchField;
+
+    @FindBy(xpath="//button[@data-testid='view-all-songs-btn']")
+    WebElement viewAllBtn ;
+
+    @FindBy(xpath= "//*[@id='mainContent']/section[12]/main/div/div[2]/div/div/div[1]/article")
+    WebElement clickFirstSongBtn;
+    @FindBy(xpath="//button[normalize-space()='Add To…']")
+    WebElement addBtn;
+    @FindBy(xpath="//*[@id='mainContent']/section[3]/header/main/div[2]/div/div[2]/div/div[1]/section/ul/li[4]")
+    WebElement playlist;
+    @FindBy(xpath="//div[@class='popover']")
+    WebElement successMsgPopup ;
+
     //test2
-    By  playBtn = By.xpath("//button[@data-title='Play or resume']");
-    By changeIcon = By.xpath("//button[@data-title='Play or resume'][@title='Pause']");
-   //test 3
-    By allSongBtn = By.xpath("//a[@href='/#/songs']");
-    By rightClick =By.xpath("//*[@id='mainContent']/section[3]/main/div/div[2]/div/div/div[1]/article");
-    By hoverOnAddTo =By.xpath("//li[@class='has-sub']");
-    By selectTestOption=By.xpath("//template[@class='block']");
-   //test4
-    By  doubleClickOnSong = By.xpath("//*[@id='mainContent']/section[3]/main/div/div[2]/div/div/div[1]/article");
-//test5
-    By clickOnPlusBtn  = By.xpath("//button[@title='Create a new playlist or folder']");
-    By clickOnPlaylist = By.xpath("//li[@data-testid='playlist-context-menu-create-smart']");
-    By enterPlaylistName = By.xpath("//input[@placeholder='Playlist name']");
-    By  clickSaveBtn = By.xpath("//footer//button[@type='submit']");
-    By clickOnDelete = By.xpath("//li[normalize-space()='Delete']");
-    By SuccessMsg = By.xpath("//div[@class='popover']");
+    @FindBy(xpath="//button[@data-title='Play or resume']")
+    WebElement playBtn;
+    @FindBy(xpath= "//button[@data-title='Play or resume'][@title='Pause']")
+    WebElement changeIcon;
+    //test3
+
+    @FindBy(xpath= "//a[@href='/#/songs']")
+    WebElement allSongBtn;
+    @FindBy(xpath= "//*[@id='mainContent']/section[3]/main/div/div[2]/div/div/div[1]/article")
+    WebElement rightClick;
+    @FindBy(xpath= "//li[@class='has-sub']")
+    WebElement hoverOnAddTo;
+    @FindBy(xpath= "//template[@class='block']")
+    WebElement selectTestOption;
+
+    //test4
+    @FindBy(xpath= "//*[@id='mainContent']/section[3]/main/div/div[2]/div/div/div[1]/article")
+    WebElement doubleClickOnSong;
+    //test5
+    @FindBy(xpath= "//button[@title='Create a new playlist or folder']")
+    WebElement clickOnPlusBtn;
+
+    @FindBy(xpath= "//li[@data-testid='playlist-context-menu-create-smart']")
+    WebElement clickOnPlaylist;
+
+    @FindBy(xpath= "//input[@placeholder='Playlist name']")
+    WebElement enterPlaylistName;
+
+    @FindBy(xpath="//span[normalize-space()='" + Playlist + "']")
+    WebElement contextClickOnPlaylist;
+
+    @FindBy(xpath= "//footer//button[@type='submit']")
+    WebElement  clickSaveBtn;
+    @FindBy(xpath= "//li[normalize-space()='Delete']")
+    WebElement  clickOnDelete;
+    @FindBy(xpath= "//div[@class='popover']")
+    WebElement  SuccessMsg;
+
+
     //test loginPage
     public WebElement getlogoutBtn() {
      return findElement((logoutBtn));
@@ -84,12 +121,14 @@ public class HomePage extends BasePage {
 
     public void contextClickOnFirstSong() {
 
-        WebElement rightClickFirstSong = driver.findElement(rightClick);
-        actions.contextClick(rightClickFirstSong).perform();
+        findElement(rightClick);
+        actions.contextClick(rightClick).perform();
+
     }
     public void hoverOnAddToOptipon(){
-        WebElement hover = driver.findElement(hoverOnAddTo);
-        actions.moveToElement(hover).perform();
+        findElement(hoverOnAddTo);
+        actions.moveToElement(hoverOnAddTo).perform();
+
     }
 
     public void ClickOnTestOption(){
@@ -98,8 +137,9 @@ public class HomePage extends BasePage {
 
 //test4
 public void doubleClickToPlay(){
-    WebElement rightClickToPlay = driver.findElement(doubleClickOnSong);
-    actions.doubleClick(rightClickToPlay).perform();
+   findElement(doubleClickOnSong);
+    actions.doubleClick(doubleClickOnSong).perform();
+
 }
     //test5
 
@@ -117,12 +157,19 @@ public void doubleClickToPlay(){
             findElement(clickSaveBtn).click();
         }
 
+    public void selectNewPlaylistByName(String Playlist){
+        findElement(contextClickOnPlaylist).sendKeys(Playlist);
+        actions.contextClick(contextClickOnPlaylist).click().perform();
+
+
+    }
     public void deletePlaylist(){
         findElement(clickOnDelete).click();
     }
     public WebElement getconfirmationMsg() {
         return findElement(SuccessMsg);
     }
+
 
 
 

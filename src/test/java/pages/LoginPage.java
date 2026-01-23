@@ -3,6 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends BasePage {
 //constructor
@@ -12,15 +13,20 @@ public class LoginPage extends BasePage {
 
     //elements
 //enter valid email field
-    By emailField = By.xpath("//input[@type='email']");
+    @FindBy(xpath="//input[@type='email']")
+    WebElement emailField;
 
     //enter valid password
-    By passwordField = By.xpath("//input[@type='password']");
+    @FindBy(xpath="//input[@type='password']")
+    WebElement passwordField;
 
     //Login button
-    By loginBtn = By.xpath("//button[@type='submit']");
+    @FindBy(xpath="//button[@type='submit']")
+    WebElement loginBtn;
+
 
     //forgot password button
+
     By forgetpasswordBtn =By.xpath("//a[@role='button']");
 
 
