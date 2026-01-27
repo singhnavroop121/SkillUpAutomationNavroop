@@ -65,7 +65,7 @@ public class HomePage extends BasePage {
     @FindBy(xpath= "//input[@placeholder='Playlist name']")
     WebElement enterPlaylistName;
 
-    @FindBy(xpath="//span[normalize-space()='" + Playlist + "']")
+ //   @FindBy(xpath="//span[normalize-space()='" + Playlist + "']")
     WebElement contextClickOnPlaylist;
 
     @FindBy(xpath= "//footer//button[@type='submit']")
