@@ -83,7 +83,7 @@ public class BaseTest {
                 capabilities.setCapability("browserName","firefox");
                 return  driver =  new RemoteWebDriver(URI.create(gridUrl).toURL(),capabilities);
             case "gridChrome":
-                capabilities.setCapability("broswer name","Chrome");
+                capabilities.setCapability("browser name","Chrome");
                 return driver = new RemoteWebDriver(URI.create(gridUrl).toURL(),capabilities);
 
             default:

@@ -26,8 +26,9 @@ public class LoginPage extends BasePage {
 
 
     //forgot password button
-
-    By forgetpasswordBtn =By.xpath("//a[@role='button']");
+    @FindBy(xpath = "//a[@role='button']")
+           WebElement forgetpasswordBtn;
+   // By forgetpasswordBtn =By.xpath("//a[@role='button']");
 
 
 
