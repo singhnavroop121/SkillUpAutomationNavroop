@@ -29,6 +29,12 @@ public class BaseTest {
     public static WebDriver driver = null;
     public static WebDriverWait wait = null;
     public static Actions actions = null;
+
+    private static final ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
+    public static WebDriver getDriver(){
+        return threadDriver.get();
+        }
+
     @BeforeSuite
     static void setupClass() {
 
@@ -44,18 +50,19 @@ public class BaseTest {
        // options.addArguments("--disable-notifications");
        // driver = new ChromeDriver(options);
         //driver = new FirefoxDriver();
-        driver = pickBrowser(System.getProperty("browser"));
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.manage().window().maximize();
-        actions  = new Actions(driver);
-        wait = new WebDriverWait(driver,Duration.ofSeconds(5));
-        driver.get(baseURL);
+       // driver = pickBrowser(System.getProperty("browser"));
+        threadDriver.set(pickBrowser(System.getProperty("browser")));
+        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        getDriver().manage().window().maximize();
+        actions  = new Actions(getDriver());
+        wait = new WebDriverWait(getDriver(),Duration.ofSeconds(5));
+        getDriver().get(baseURL);
     }
 
 
     @AfterMethod
     public void closeBrowser() {
-        driver.quit();
+        getDriver().quit();
     }
 
 

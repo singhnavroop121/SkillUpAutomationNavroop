@@ -13,8 +13,8 @@ public class LoginTest extends BaseTest {
 public void loginWithvalidEmail() throws InterruptedException {
 
     //page objects
-    LoginPage loginpage = new LoginPage(driver);
-    HomePage homepage = new HomePage(driver);
+    LoginPage loginpage = new LoginPage(getDriver());
+    HomePage homepage = new HomePage(getDriver());
 
     //enter valid email address
    loginpage.provideEmail("student@skillup.study");
@@ -31,7 +31,7 @@ public void loginWithvalidEmail() throws InterruptedException {
 @Test(dataProvider = "NegativeLoginTestData",dataProviderClass = TestNGDataProvider.class)
 public void negativeLoginTests(String email,String password) throws InterruptedException {
 
-    LoginPage loginpage = new LoginPage(driver);
+    LoginPage loginpage = new LoginPage(getDriver());
     //enter valid email address
     loginpage.provideEmail(email);
     //enter valid password
@@ -48,8 +48,8 @@ public void negativeLoginTests(String email,String password) throws InterruptedE
 //test-3 logout varification
 @Test
     public void logoutVarification() throws InterruptedException {
-    LoginPage loginpage = new LoginPage(driver);
-    HomePage homepage = new HomePage(driver);
+    LoginPage loginpage = new LoginPage(getDriver());
+    HomePage homepage = new HomePage(getDriver());
 
     loginpage.loginToAppWithvalidEmail();
     Assert.assertTrue(homepage.getlogoImage().isDisplayed());
