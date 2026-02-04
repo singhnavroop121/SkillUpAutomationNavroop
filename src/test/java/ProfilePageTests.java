@@ -15,9 +15,9 @@ public class ProfilePageTests extends BaseTest {
     public void changeProfileNameTest(String currentPassword, String newPassword, String newName, String profileEmail) throws InterruptedException {
 
 
-        ProfilePage profilepage = new ProfilePage(driver);
-        HomePage homepage = new HomePage(driver);
-        LoginPage loginpage = new LoginPage(driver);
+        ProfilePage profilepage = new ProfilePage(getDriver());
+        HomePage homepage = new HomePage(getDriver());
+        LoginPage loginpage = new LoginPage(getDriver());
         //login with valid credentials
         loginpage.loginToAppWithvalidEmail();
         //click profile icon

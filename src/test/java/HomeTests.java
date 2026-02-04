@@ -13,8 +13,8 @@ public class HomeTests extends BaseTest {
     @Test
     public void AddSongToPlaylistTest() throws InterruptedException {
 
-        LoginPage loginpage = new LoginPage(driver);
-        HomePage homepage = new HomePage(driver);
+        LoginPage loginpage = new LoginPage(getDriver());
+        HomePage homepage = new HomePage(getDriver());
         //login with valid credentials
         loginpage.loginToAppWithvalidEmail();
 
@@ -44,8 +44,8 @@ public class HomeTests extends BaseTest {
     @Test
     public void play() throws InterruptedException {
 
-        LoginPage loginpage = new LoginPage(driver);
-        HomePage homepage = new HomePage(driver);
+        LoginPage loginpage = new LoginPage(getDriver());
+        HomePage homepage = new HomePage(getDriver());
         //login with valid credentials
         loginpage.loginToAppWithvalidEmail();
 
@@ -61,8 +61,8 @@ public class HomeTests extends BaseTest {
     //test3
     @Test
     public void hoverAddToOption() throws InterruptedException {
-        LoginPage loginpage = new LoginPage(driver);
-        HomePage homepage = new HomePage(driver);
+        LoginPage loginpage = new LoginPage(getDriver());
+        HomePage homepage = new HomePage(getDriver());
         //login with valid credentials
         loginpage.loginToAppWithvalidEmail();
 
@@ -85,8 +85,8 @@ public class HomeTests extends BaseTest {
     @Test
     public void doubleClickPlaySong() throws InterruptedException {
 
-        LoginPage loginpage = new LoginPage(driver);
-        HomePage homepage = new HomePage(driver);
+        LoginPage loginpage = new LoginPage(getDriver());
+        HomePage homepage = new HomePage(getDriver());
         //login with valid credentials
         loginpage.loginToAppWithvalidEmail();
 
@@ -104,8 +104,8 @@ public class HomeTests extends BaseTest {
 //test5
     @Test
     public void createAndDeletePlaylist() throws InterruptedException {
-        LoginPage loginpage = new LoginPage(driver);
-        HomePage homepage = new HomePage(driver);
+        LoginPage loginpage = new LoginPage(getDriver());
+        HomePage homepage = new HomePage(getDriver());
         //login with valid credentials
         loginpage.loginToAppWithvalidEmail();
         //click on plus button
