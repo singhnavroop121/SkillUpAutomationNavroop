@@ -9,7 +9,7 @@ Scenario Outline: Login Success
   Then I am Logged In
   Examples:
     | email                  | password      |
-    | student@skillup.study  | Intern$hip001 |
+    | student@skillup.study   | Intern$hip001 |
 
   Scenario Outline: Login NotSuccess
     Given I Open Login Page
